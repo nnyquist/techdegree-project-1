@@ -55,7 +55,29 @@ function getRandomQuote() {
     return randQuote;
 }
 
+/***
+ * `randomBackgroundColor` function
+ *      Changes the webpage background every time the quote changes
+***/
+function randomBackgroundColor() {
+    // generate 3 random numbers
+    _red = Math.floor(
+        Math.random() * 256
+    ) + 1;
+    _blue = Math.floor(
+        Math.random() * 256
+    ) + 1;
+    _green = Math.floor(
+        Math.random() * 256
+    ) + 1;
 
+    // combine to a single rgb
+    _rgb = 'rgb(' + [_red, _blue, _green].join() + ')';
+
+    // change the background color
+    // (referenced https://www.w3schools.com/jsref/prop_style_backgroundcolor.asp for assistance on this one.)
+    document.body.style.backgroundColor = _rgb;
+};
 
 /***
  * `printQuote` function
@@ -89,12 +111,24 @@ function printQuote() {
 
     // return the _html string
     document.getElementById('quote-box').innerHTML = _html;
+
+    // change the background color
+    randomBackgroundColor();
 }
 
-/***
- * `randomBackgroundColor` function
- *      Changes the webpage background every time the user clicks the "Show Another Quote" button
-***/
+
+
+// refresh every 10 seconds
+setInterval(
+    // call the printQuote function
+    //printQuote(),
+    function() {
+        printQuote();
+    },
+
+    // every 10 seconds
+    10 * 1000
+);
 
 
 /***
