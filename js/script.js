@@ -27,13 +27,15 @@ var quotes = [
     },
     {
         quote: 'People demand freedom of speech as a compensation for the freedom of thought which they seldom use.',
-        source: 'Soren Kierkegaard'
+        source: 'Soren Kierkegaard',
+        tags: 'philosophy'
     },
     {
         quote: 'Well Seymour, you are an odd fellow, but I must say, you steam a good ham.',
         source: 'Superintendent Chalmers',
         citation: '22 Short Films About Springfield',
-        year: 1996
+        year: 1996,
+        tags: 'humor'
     }
 ];
 
@@ -76,12 +78,24 @@ function printQuote() {
         _html = _html + '<span class="year">' + randQuote.year + '</span>';
     };
 
+    // conditional check for adding tags if available
+    if ( 'tags' in randQuote ) {
+        _html = _html + '<span class="tags"><br>' +
+            '(' + randQuote.tags + ')</strong></span>';
+    };
+
     // close the _html string
     _html = _html + '</p>';
 
     // return the _html string
     document.getElementById('quote-box').innerHTML = _html;
 }
+
+/***
+ * `randomBackgroundColor` function
+ *      Changes the webpage background every time the user clicks the "Show Another Quote" button
+***/
+
 
 /***
  * click event listener for the print quote button
